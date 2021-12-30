@@ -27,8 +27,13 @@ interface TodoProviderProps {
 
 export const TodoProvider = ({ children }: TodoProviderProps) => {
     const [todoState, dispatch] = useReducer(todoReducer, INITIAL_STATE)
+
+    const toogleTodo = (id: string) => {
+        dispatch({ type: 'toggleTodo', payload: { id } })
+    }
+
     return (
-        <TodoContext.Provider value={{ todoState }}>
+        <TodoContext.Provider value={{ todoState, toogleTodo }}>
             {children}
         </TodoContext.Provider>
     )
